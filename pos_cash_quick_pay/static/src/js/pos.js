@@ -59,7 +59,11 @@ odoo.define('pos_cash_quick_pay.pay', function (require) {
                     }
                 }
                 if (! open_paymentline) {
-                    self.pos.get_order().add_paymentline(self.pos.cashregisters[0]);
+                    self.pos.get_order().add_paymentline(
+                        self.pos.cashregisters[self.pos.cashregisters.map(function (payment_method) {
+                          return payment_method.journal.type === "cash"
+                        }).indexOf(true)]
+                    );
                     self.render_paymentlines();
                 }
 

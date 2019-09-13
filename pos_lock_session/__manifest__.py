@@ -7,6 +7,7 @@
     'category': 'Point of Sale',
     'depends': ['point_of_sale'],
     'data': [
+        'security/ir.model.access.csv',
         'views/pos_lock.xml',
         'views/pos_templates.xml',
     ],

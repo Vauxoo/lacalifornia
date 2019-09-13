@@ -12,6 +12,10 @@
     z-index:1200;
 }
 
+.screen-content-flexbox {
+    text-align:center !important;
+}
+
 .pos .modal-dialog .screen_lock .fa-lock {
     position: absolute;
     left: 13px;
@@ -70,7 +74,8 @@
 }
 
 .user_password {
-    height: 28px;
+    height: 40px;
+    width: 246px;
     border-radius: 5px;
 }
 

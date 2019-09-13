@@ -85,9 +85,21 @@ odoo.define('pos_lock_session.screen', function (require) {
                 $( '.user_password' ).trigger( "change" );
             });
 
+            this.$('button.number-backspace-password').click(function (event) {
+                var cashier_code = self.$('.user_password').val();
+                self.$('.user_password').val(
+                    cashier_code.substring(0, cashier_code.length - 1)
+                );
+                $( '.user_password' ).trigger( "change" );
+            });
+
+            this.$('button.number-clear-password').click(function (event) {
+                self.$('.user_password').val('');
+            });
+
             $('.user_password').change(function (e) {
                 var buffer = self.$('.user_password').val();
-                if ( buffer.length == 2 ) {
+                if ( buffer.length == 3 ) {
                     $('.login').trigger('click');
                 }
             });
