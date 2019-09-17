@@ -6,6 +6,7 @@
                 <link rel="stylesheet" href="/pos_lock_session/static/src/css/session_lock.css"/>
                 <script type="text/javascript" src="/pos_lock_session/static/src/js/unlock_screen.js"/>
                 <script type="text/javascript" src="/pos_lock_session/static/src/js/session_lock.js"/>
+                <script type="text/javascript" src="/pos_lock_session/static/src/js/pos_cashier.js"/>
             </xpath>
         </template>
     </data>

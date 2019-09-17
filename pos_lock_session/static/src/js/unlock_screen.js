@@ -68,6 +68,7 @@ odoo.define('pos_lock_session.screen', function (require) {
                         _super_posmodel.set_start_order.call(self.pos);
                     }
                     self.gui.show_screen('products');
+                    self.user.pos_security_pin = user_id.id
                     $('.cashier_number>span').html(user_id.cashier_name);
                     self.chrome.$('.pos-topheader').show();
                     if (self.pos.config.iface_vkeyboard && self.chrome.widget.keyboard) {
@@ -137,6 +138,8 @@ odoo.define('pos_lock_session.screen', function (require) {
         },
     });
 
+     models.Order = models.Order.extend({})
+
     models.PosModel = models.PosModel.extend({
         // set when the user login to session.
         set_start_order: function () {
@@ -151,40 +154,5 @@ odoo.define('pos_lock_session.screen', function (require) {
                 _super_posmodel.set_start_order.apply(this, arguments);
             }
         },
-    });
-
-    models.PosModel.prototype.models.push({
-        model: 'pos.cashier',
-        fields: ['cashier_name', 'cashier_code'],
-        loaded: function (self, pos_cashiers) {
-            self.pos_cashiers = pos_cashiers;
-            self.db.add_pos_cashiers(pos_cashiers);
-        },
-    });
-
-    DB.include({
-        init: function (options) {
-            this._super.apply(this, arguments);
-            this.pos_cashiers_id = {};
-        },
-        add_pos_cashiers: function (pos_cashiers) {
-            var self = this;
-            pos_cashiers.map(function (cashier) {
-                self.pos_cashiers_id[cashier.id] = cashier
-            });
-        },
-        get_cashier_by_id: function (id) {
-            return this.pos_cashiers_id[id]
-        },
-        get_cashier_by_code: function (code) {
-            var cashiers = self.posmodel.db.pos_cashiers_id;
-
-            var codes = $.map( cashiers, function( value ) {
-              return value.cashier_code;
-            });
-
-            var id = codes.indexOf(Number(code));
-            return this.pos_cashiers_id[id+1];
-        }
     });
 });
