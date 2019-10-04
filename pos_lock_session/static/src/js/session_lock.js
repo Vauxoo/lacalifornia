@@ -12,6 +12,7 @@ var _t = core._t;
 screens.PaymentScreenWidget.include({
         finalize_validation: function() {
             this._super();
+            this.pos.get_order().finalize();
             this.gui.show_screen('login',{lock:true});
     }
 });

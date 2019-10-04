@@ -29,6 +29,8 @@ class PosOrder(models.Model):
 
 class PosCashierNumber(models.Model):
     _name = 'pos.cashier'
+    _description = 'Pos Cashier and lock screen'
+    _rec_name = 'cashier_name'
 
     cashier_name = fields.Char(string='Name')
     cashier_code = fields.Integer(string='Code')
