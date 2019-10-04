@@ -1,0 +1,80 @@
+#order_select {
+    position: relative;
+    color: #f0f0f0;
+    display: inline-block;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 46px;
+    padding: 4px 8px;
+    width: 172px;
+    margin: 3px;
+    margin-bottom: 0px;
+    margin-right: 2px;
+    background: #8b8b8b;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    vertical-align: top;
+    text-align: center;
+    box-shadow: 0px -5px 10px -6px rgb(82, 82, 82) inset;
+    cursor: pointer;
+    min-width: 45px;
+}
+
+#order_dropdown {
+    box-shadow: 0px -5px 10px -6px rgb(82, 82, 82) inset;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    max-height: 592%;
+    color: white;
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 44px;
+    z-index: 100;
+    display: block;
+    background-color: black;
+    overflow-y: scroll;
+
+
+}
+
+#order_name {
+    background-color: #8b8b8b;
+    cursor: pointer;
+    height: 30px;
+    padding-top: 20px;
+    border: 1px solid grey;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 2px;
+    overflow: hidden;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+#selected_order {
+    text-overflow: ellipsis;
+    font-size: 16px;
+    text-overflow: hidden;
+    margin-top: 9px
+}
+
+.popup-order-name {
+    top: -200px !important;
+    height: 200px !important;
+}
+
+.input-order-name {
+	margin-top: 15px;
+}
+
+.selection-order {
+    padding: 10px 16px !important;
+}
+
+.popup-order-selection {
+    max-height: 270px;
+    overflow-y: scroll;
+}
