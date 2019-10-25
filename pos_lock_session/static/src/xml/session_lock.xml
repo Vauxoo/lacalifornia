@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="Chrome">
+        <t t-jquery="div.pos-rightheader" t-operation="append">
+            <t t-if='widget.pos.config and widget.pos.config.pos_lock'>
+                <div class="oe_status">
+                    <i class="fa fa-lock pos-lock"/>
+                </div>
+            </t>
+        </t>
+    </t>
+
+    <t t-name="SessionLock">
+        <div class="modal-dialog">
+            <div class='screen_lock'>
+                <i class='fa fa-lock'/>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="LoginScreenWidget">
+        <div class='login-screen screen'>
+            <div class='screen-content-flexbox'>
+                <div class='button back back_pos'>
+                    <i class='fa fa-arrow-circle-left'/>
+                </div>
+                <div>
+                    <h1 style="font-size: 5em;">
+                        <t t-esc="widget.pos.get_cashier().name"/>
+                    </h1>
+                </div>
+                <div>
+                    <input class='user_password'
+                           placeholder='Código de cajero'/>
+                    <div class='button login pos_login' style="display: inline;">
+                    <i class="fa fa-arrow-circle-right" aria-hidden="true"/>
+                </div>
+                </div>
+                <div><span class="pos_invalid_password"/></div>
+
+                <t t-name="CashierPaswordWidget">
+                    <div>
+                        <button class="input-button number-char-password" data-action='1'>1</button>
+                        <button class="input-button number-char-password" data-action='2'>2</button>
+                        <button class="input-button number-char-password" data-action='3'>3</button>
+                        <br />
+                        <button class="input-button number-char-password" data-action='4'>4</button>
+                        <button class="input-button number-char-password" data-action='5'>5</button>
+                        <button class="input-button number-char-password" data-action='6'>6</button>
+                        <br />
+                        <button class="input-button number-char-password" data-action='7'>7</button>
+                        <button class="input-button number-char-password" data-action='8'>8</button>
+                        <button class="input-button number-char-password" data-action='9'>9</button>
+                        <br />
+                        <button class="input-button number-clear-password" data-action='CLEAR' >C</button>
+                        <button class="input-button number-char-password" data-action='0'>0</button>
+                        <button class="input-button number-backspace-password" data-action='BACKSPACE'>
+                            <img style="pointer-events: none;" src="/point_of_sale/static/src/img/backspace.png" width="24" height="21" alt="Backspace"/>
+                        </button>
+                        <br />
+                    </div>
+                </t>
+            </div>
+        </div>
+    </t>
+
+    <t t-extend="UsernameWidget">
+        <t t-jquery=".username" t-operation="before">
+            <span class="cashier_number">
+                <span></span>
+            </span>
+        </t>
+    </t>
+</templates>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="ace_view_pos_config_form">
+            <field name="name">pos.config.form.view.inherit</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+            <field name="arch" type="xml">
+                <div id="category_reference" position="after">
+                    <div class="col-xs-12 col-md-9 o_setting_box"
+                         id="quick_cash_payment">
+                        <div class="o_setting_left_pane">
+                            <field name="enable_quick_cash_payment"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="enable_quick_cash_payment"/>
+                            <div class="content-group mt16"
+                                 attrs="{
+                                 'invisible' :
+                                 [('enable_quick_cash_payment', '=', False)]}">
+                                <div class="row mt16">
+                                    <label string="Payment Buttons"
+                                           for="payment_buttons"
+                                           class="col-md-3 o_light_label"/>
+                                    <field name="payment_buttons"
+                                           widget="many2many_tags"
+                                           attrs="{'required':[('enable_quick_cash_payment','=',True)]}"/>
+                                </div>
+                                <div class="row mt16">
+                                    <label string="Validate On Click"
+                                           for="validate_on_click"
+                                           class="col-md-3 o_light_label"/>
+                                    <field name="validate_on_click"/>
+                                </div>
+                                <div class="row mt16">
+                                    <label string="Cash Payment Method"
+                                           for="cash_method"
+                                           class="col-md-3 o_light_label"/>
+                                    <field name="cash_method"
+                                           domain="[('type', '=', 'cash')]"
+                                           attrs="{'required':[('enable_quick_cash_payment','=',True)]}"
+                                           context="{'journal_ids': journal_ids, 'quick_pay': True}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </field>
+        </record>
+
+        <record id="cash_payment_form_view" model="ir.ui.view">
+            <field name="name">cash_payment_form_view</field>
+            <field name="model">quick.cash.payment</field>
+            <field name="arch" type="xml">
+                <form string="Pos Quick payment">
+                    <sheet>
+                        <div class="oe_left">
+                            <group>
+                                <field name="name"/>
+                                <field name="color"/>
+                            </group>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="cash_payment_tree_view" model="ir.ui.view">
+            <field name="name">cash.payment.tree.view</field>
+            <field name="model">quick.cash.payment</field>
+            <field name="field_parent" eval="False"/>
+            <field name="arch" type="xml">
+                <tree string="Product Product Categories">
+                    <field name="name"/>
+                    <field name="color"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_pos_cash_quick_pay" model="ir.actions.act_window">
+            <field name="name">Quick payments</field>
+            <field name="res_model">quick.cash.payment</field>
+            <field name="view_type">tree</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" eval="False"/>
+        </record>
+
+        <menuitem id="menu_quick_cash_payment"
+            name="Quick payments"
+            parent="point_of_sale.menu_pos_config_pos"
+            action="pos_cash_quick_pay.action_pos_cash_quick_pay"
+            groups="base.group_user"/>
+    </data>
+</openerp>
