@@ -75,7 +75,11 @@ odoo.define('pos_lock_session.screen', function (require) {
                         self.chrome.widget.keyboard.hide();
                     }
                 } else {
-                    self.$('.pos_invalid_password').text('Invalid Password');
+                    var buffer = self.$('.user_password').val();
+                    if ( buffer.length == self.pos.config.pos_lock_cashier_length ) {
+                        self.$('.pos_invalid_password').text('Invalid Password');
+                        self.$('.user_password').val('');
+                    }
                 }
             });
 
@@ -100,7 +104,7 @@ odoo.define('pos_lock_session.screen', function (require) {
 
             $('.user_password').change(function (e) {
                 var buffer = self.$('.user_password').val();
-                if ( buffer.length == 3 ) {
+                if ( buffer.length == self.pos.config.pos_lock_cashier_length ) {
                     $('.login').trigger('click');
                 }
             });
@@ -119,7 +123,11 @@ odoo.define('pos_lock_session.screen', function (require) {
                             self.chrome.widget.keyboard.hide();
                         }
                     } else {
-                        self.$('.pos_invalid_password').text('Invalid Password');
+                        var buffer = self.$('.user_password').val();
+                        if ( buffer.length == self.pos.config.pos_lock_cashier_length ) {
+                            self.$('.pos_invalid_password').text('Invalid Password');
+                            self.$('.user_password').val('');
+                        }
                     }
                 }
             });
@@ -127,7 +135,6 @@ odoo.define('pos_lock_session.screen', function (require) {
         user_icon_url: function (id) {
             return '/web/image?model=res.users&id=' + id + '&field=image';
         },
-
     });
 
     gui.define_screen({
