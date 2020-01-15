@@ -35,7 +35,7 @@ odoo.define('pos_lock_session.order_cashier', function (require) {
 
     models.PosModel.prototype.models.push({
         model: 'pos.cashier',
-        fields: ['cashier_name', 'cashier_code'],
+        fields: ['cashier_name', 'cashier_code', 'cashier_temp_user_id'],
         loaded: function (self, pos_cashiers) {
             self.pos_cashiers = pos_cashiers;
             self.db.add_pos_cashiers(pos_cashiers);

@@ -7,6 +7,7 @@ class PosLockConfig(models.Model):
     _inherit = 'pos.config'
 
     pos_lock = fields.Boolean(string='Enable Lock Screen')
+    pos_lock_cashier_length = fields.Integer(string='Cashier code length')
     bg_color = fields.Char(
         'Background Color', default='rgb(218, 218, 218)',
         help='The background color of the lock screen,'
