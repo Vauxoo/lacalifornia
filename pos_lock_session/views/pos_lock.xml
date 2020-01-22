@@ -1,0 +1,113 @@
+<odoo>
+    <data>
+        <record id="view_pos_quick_payment_config_form" model="ir.ui.view">
+            <field name="name">pos.config.form.view</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//h2" position="before">
+                    <h2>Screen Lock</h2>
+                    <group name="session_lock">
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane">
+                                    <field name="pos_lock"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label for="pos_lock"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="pos_lock_cashier_length"/>
+                                    <field name="pos_lock_cashier_length"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label for="bg_color"/>
+                                    <field name="bg_color" style="height:30px;width:200px"/>
+                                </div>
+                            </div>
+                        </div>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="pos_order_form_inherit" model="ir.ui.view">
+            <field name="name">pos.order.form.inherit</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_order_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="cashier_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="pos_view_pos_order_search_inherit" model="ir.ui.view">
+            <field name="name">pos.view.pos.order.search.inherit</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id"
+                   ref="point_of_sale.view_pos_order_search"/>
+            <field name="arch" type="xml">
+                <field name="config_id" position="after">
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_cashier"
+                                string="Cashier number"
+                                context="{'group_by':'cashier_id'}"/>
+                    </group>
+                </field>
+            </field>
+        </record>
+
+        <record id="cashier_number_form_view" model="ir.ui.view">
+            <field name="name">cashier.number.form.view</field>
+            <field name="model">pos.cashier</field>
+            <field name="arch" type="xml">
+                <form string="Pos cashier number">
+                    <sheet>
+                        <div class="oe_left">
+                            <group>
+                                <field name="cashier_name"/>
+                                <field name="cashier_code"/>
+                            </group>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="cashier_number_tree_view" model="ir.ui.view">
+            <field name="name">cashier.number.tree.view</field>
+            <field name="model">pos.cashier</field>
+            <field name="field_parent" eval="False"/>
+            <field name="arch" type="xml">
+                <tree string="Pos cashier number">
+                    <field name="cashier_name"/>
+                    <field name="cashier_code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_pos_cashier_number" model="ir.actions.act_window">
+            <field name="name">PoS Cashier codes</field>
+            <field name="res_model">pos.cashier</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_pos_cashier"
+            name="PoS Cashier"
+            parent="point_of_sale.menu_point_root"
+            sequence="16"
+            groups="point_of_sale.group_pos_manager"/>
+
+        <menuitem
+            id="menu_action_pos_cashier"
+            parent="menu_pos_cashier"
+            action="action_pos_cashier_number"
+            />
+  </data>
+</odoo>
