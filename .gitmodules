@@ -1,28 +1,16 @@
 [submodule "lacalifornia"]
 	path = lacalifornia
 	url = git@git.vauxoo.com:vauxoo/lacalifornia.git
-	branch = 12.0
+	branch = 16.0
 [submodule "addons-vauxoo"]
 	path = addons-vauxoo
 	url = git@github.com:Vauxoo/addons-vauxoo.git
-	branch = 12.0
-[submodule "server-ux"]
-	path = server-ux
-	url = git@github.com:OCA/server-ux.git
-	branch = 12.0
-[submodule "stock-logistics-warehouse"]
-	path = stock-logistics-warehouse
-	url = git@github.com:OCA/stock-logistics-warehouse.git
-	branch = 12.0
+	branch = 16.0
 [submodule "purchase-workflow"]
 	path = purchase-workflow
-	url = git@github.com:OCA/purchase-workflow.git
-	branch = 12.0
-[submodule "stock-logistics-workflow"]
-	path = stock-logistics-workflow
-	url = git@github.com:OCA/stock-logistics-workflow.git
-	branch = 12.0
-[submodule "account-invoicing"]
-	path = account-invoicing
-	url = git@github.com:OCA/account-invoicing.git
-	branch = 12.0
+	url = git@github.com:Vauxoo/purchase-workflow.git
+	branch = 16.0
+[submodule "sh-tools"]
+	path = sh-tools
+	url = git@git.vauxoo.com:vauxoo/sh-tools.git
+	branch = 16.0
